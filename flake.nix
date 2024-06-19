@@ -1,5 +1,5 @@
 {
-  description = "A Python Dev Shell";
+  description = "Python Dev Shell";
 
   outputs = { self, nixpkgs }:
   let
@@ -16,7 +16,7 @@
     };
 
     devShells.${system}.default = pkgs.mkShell rec {
-      name = "PythonDevShell";
+      name = "FootballDevShell";
       buildInputs = with pkgs; [
         (pkgs.python3.withPackages (python-pkgs: [
           python-pkgs.numpy
@@ -45,7 +45,7 @@
 
       shellHook = ''
         export PS1+="${name}> "
-        echo "Welcome to the Python Dev Shell!"
+        echo "Welcome to the Football Dev Shell!"
       '';
     };
   }; 
