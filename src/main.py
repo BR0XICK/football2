@@ -6,7 +6,13 @@ from scoring import fantasy_scoring, unneeded_cols, fantasy_pos_groups
 
 # get positional players qb, wr, rb
 def get_position_players(pos: str, data: pd.DataFrame) -> pd.DataFrame:
-    return data[data['position'] == pos]
+    position_players = []
+    for player in data:
+        #print(player[0])
+        if player[3] == pos:
+            position_players.add(player)
+    return position_players
+    #return data[data['position'] == pos]
 
 def save_csv_as_mat(csv: str):
     csv_data = pd.read_csv('./data/player_stats_2023.csv')
@@ -24,8 +30,9 @@ def load_mat() -> pd.DataFrame:
 
 def main() -> int:
     stats = load_mat()
-    print(stats.keys())
+    rb_players = get_position_players('RB', stats)
+    print(rb_players)
     return 1
 
 if __name__ == "__main__":
-    print(main())
+    main()
